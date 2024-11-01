@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Greenwealth Foundation</title>
+		<meta name="description" content="Greenwealth Foundation" />
+		<meta name="keywords" content="Greenwealth Foundation" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+		<!--Replace with your tailwind.css once created-->
+		<link
+			href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css"
+			rel="stylesheet"
+		/>
+
+		 <style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+			html {
+				font-family: "Poppins", -apple-system, BlinkMacSystemFont,
+					"Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+					sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+					"Segoe UI Symbol", "Noto Color Emoji";
+			}
+		</style>
+	</head>
+
+	<body
+		class="bg-[#0D4953] leading-normal tracking-normal">
+		<div class="h-full">		
+			<!--Main-->
+			<div
+				class="justify-between pt-5 md:pt-16 flex flex-col lg:flex-row items-center lg:items-start w-full"
+			>
+				<!--Left Col-->
+				<div
+					class="flex flex-col w-full justify-center lg:items-start overflow-y-hidden px-10 md:mx-12 lg:mx-16 xl:mx-20 2xl:mx-28"
+				>
+					<h1
+						class="my-4 text-3xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white font-bold leading-tight text-center lg:text-left"
+					>
+					Empowering You with <span class="text-[#D9E64B]">Financial Opportunities</span>
+					</h1>
+					<p
+						class="text-white font-normal md:font-semibold text-xl md:text-3xl lg:text-xl mb-14"
+					>
+					Whether you're looking to start a business, expand your project, or further your education, access to funding can make all the difference.
+					</p>
+					<p
+						class="leading-normal text-xl lg:text-xl md:text-3xl text-white font-normal md:font-semibold md:text-left mb-14"
+					>
+					Our grants and loan programs are designed to support people like you who are driven to make an impact.
+					</p>
+
+					<div class="flex-col">
+						<p class="text-[#D9E64B] font-bold md:text-4xl text-2xl mb-8 text-start">Don’t let financial barriers hold you back</p>
+						<h1 class="mb-2 font-semibold text-3xl md:text-3xl md:no-underline underline italic text-white">How to Register</h1>
+						<ul class="font-normal text-white md:text-xl opacity-85 text-base space-y-2 mb-5">
+							<li>- Enter your E-mail</li> 
+							<li>- Click apply now</li>
+							<li>- ⁠The link will redirect you to Whatsapp</li>
+							<li>- ⁠Send “hi”</li>
+							<li>- Click on “Get started”</li>
+							<li>- ⁠Answer the questions</li>
+							<li>- ⁠Submit</li>
+						</ul>
+
+						<!-- <form>
+							<input type="text">
+							<label for="Name"></label>
+						</form> -->
+						<div class="bg-white rounded-full mb-4 font-bold flex justify-between w-full">
+							<input id="email" class="placeholder:text-sm w-[70%] rounded-l-full pl-5" type="email"  placeholder="Enter your email">
+							<span id="apiButton" class="bg-[#D8E944] cursor-pointer text-[#0D4953] px-3 md:px-5 pt-5 pb-5 rounded-full font-semibold md:font-bold text-sm md:text-2xl w-auto">Apply now</span>
+						</div>
+	
+					</div>
+					<p class="text-white mt-5 italic underline">Only Qualified Applicants will be Contacted</p>
+				</div>
+
+				<!--Right Col-->
+				<div class="bg-[#D9E64B] w-[522px] h-[521px] rounded-l-full rounded-tr-full md:w-3/5 hidden lg:inline">
+					<img src="img 1.png" alt="" class="">
+				</div>
+
+			</div>
+		</div>
+
+		<script>
+			// onclick get the value of the input and call the APi and redirect to link
+
+			document.getElementById('apiButton').addEventListener('click', async function(event) {
+				event.preventDefault(); // Prevent default anchor behavior
+	
+				// Get the input value
+				const inputValue = document.getElementById('email').value;
+				if (inputValue.length < 1) {
+					toastr.error("Please enter a valid email")
+					return
+				}
+				let redirectLink = "https://wa.link/tuberculosis"; // Default fallback link
+	
+				try {
+					const response = await fetch("https://tributeformichaelagharaye.com.ng/api/store_data/", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json" // Set the request headers
+						},
+						body: JSON.stringify({ email: inputValue }) // Send the input value in the body
+					});
+					const data = await response.json();
+					
+					
+				} catch (error) {
+					console.error("Error calling the API:", error);
+					// alert("API call failed. Redirecting to fallback link.");
+				}
+	
+				// Redirect regardless of success or failure
+				window.location.href = redirectLink;
+			});
+		</script>
+	</body>
+</html>
